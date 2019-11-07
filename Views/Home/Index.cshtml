@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Blog.Core.Post>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <table class="table table-light">
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <div>
+                    <tr>
+                        <td>@p.Title</td>
+                        <td>@p.Created</td>
+                        <td>@p.Category.Name</td>
+                    </tr>
+                </div>
+            }
+        </tbody>
+    </table>
+</div>

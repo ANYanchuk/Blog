@@ -1,0 +1,31 @@
+@model Blog.Core.Post
+
+<table class="table">
+    <thead>
+        <legend>Добавить пост</legend>
+    </thead>
+    <tbody>
+        <form action="AddPost" method="Post">
+            <tr>
+                <td>@Html.DisplayNameFor(p=>p.Title)</td>
+                <td>@Html.EditorFor(p => p.Title)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(p=>p.Description)</td>
+                <td>
+                    <textarea asp-for="Description"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(p=>p.Category)</td>
+                <td>
+                    @Html.DropDownListFor(p=>p.CategoryId, ViewData["Categories"] as SelectList)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Создать"/></td>
+            </tr>
+        </form>
+    </tbody>
+</table>

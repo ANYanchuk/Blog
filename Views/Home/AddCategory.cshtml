@@ -1,0 +1,25 @@
+@model Blog.Core.Category
+
+<table class="table">
+    <thead>
+        <legend>Добавить категорию</legend>
+    </thead>
+    <tbody>
+        <form action="AddCategory" method="Post">
+            <tr>
+                <td>@Html.DisplayNameFor(p=>p.Name)</td>
+                <td>@Html.EditorFor(p => p.Name)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(p=>p.Description)</td>
+                <td>
+                    <textarea asp-for="Description"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Создать"/></td>
+            </tr>
+        </form>
+    </tbody>
+</table>
