@@ -7,11 +7,11 @@
     <tbody>
         <form action="AddCategory" method="Post">
             <tr>
-                <td>@Html.DisplayNameFor(p=>p.Name)</td>
-                <td>@Html.EditorFor(p => p.Name)</td>
+                <td>@Html.DisplayNameFor(c=>c.Name)</td>
+                <td>@Html.EditorFor(c => c.Name)</td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(p=>p.Description)</td>
+                <td>@Html.DisplayNameFor(c=>c.Description)</td>
                 <td>
                     <textarea asp-for="Description"></textarea>
                 </td>

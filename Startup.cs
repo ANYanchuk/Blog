@@ -27,6 +27,7 @@ namespace Blog
         {   
             services.AddDbContext<PostContext>();
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<ITagCategoryRepository, CategoryRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

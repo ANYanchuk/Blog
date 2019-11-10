@@ -4,18 +4,26 @@
 }
 
 <div class="container">
-    <table class="table table-light">
-        <tbody>
-            @foreach (var p in Model)
-            {
-                <div>
-                    <tr>
-                        <td>@p.Title</td>
-                        <td>@p.Created</td>
-                        <td>@p.Category.Name</td>
-                    </tr>
-                </div>
-            }
-        </tbody>
-    </table>
+    @foreach(var p in Model)
+    {
+      <div class="container" style="width:80%">
+          <h1 class="text-center">@p.Title</h1>
+          <div>
+                <h6 class="text-light text-left " style="display:inline">@p.Created</h6>
+                <h6 class="text-light text-right" style="display:inline">@p.Category.Name</h6>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="post-body">
+              @p.Body
+          </div>
+              @if(@p.Modified)
+              {
+                  <p class="text-sm-right">Изменено</p>
+              } 
+              else
+              {
+                  <p class="text-sm-right"></p>
+              }
+      </div>  
+    }
 </div>

@@ -11,9 +11,9 @@
                 <td>@Html.EditorFor(p => p.Title)</td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(p=>p.Description)</td>
+                <td>@Html.DisplayNameFor(p=>p.Body)</td>
                 <td>
-                    <textarea asp-for="Description"></textarea>
+                    <textarea asp-for="Body" style = "width:100%; height: 20em;" placeholder="Писать текст здесь"></textarea>
                 </td>
             </tr>
             <tr>
