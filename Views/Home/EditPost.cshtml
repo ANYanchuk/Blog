@@ -2,10 +2,10 @@
 
 <table class="table">
     <thead>
-        <legend>Добавить пост</legend>
+        <legend>Изменить пост</legend>
     </thead>
     <tbody>
-        <form action="AddPost" method="Post">
+        <form action="EditPost" method="POST">
             <tr>
                 <td>@Html.DisplayNameFor(p=>p.Title)</td>
                 <td>@Html.EditorFor(p => p.Title)</td>
@@ -14,7 +14,9 @@
             <tr>
                 <td>@Html.DisplayNameFor(p=>p.Body)</td>
                 <td>
-                    <textarea asp-for="Body" style = "width:100%; height: 20em;" placeholder="Писать текст здесь"></textarea>
+                    <textarea asp-for="Body" style = "width:100%; height: 20em">
+                        @Model.Body
+                    </textarea>
                 </td>
             </tr>
             <tr>
@@ -25,7 +27,13 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Создать"/></td>
+                <td>
+                    <input class="btn btn-outline-dark" type="submit" value="Изменить"/>
+                    <a class="btn btn-outline-danger" asp-controller="Home" asp-action="DeletePost" 
+                        asp-route-id="@Model.Id">Удалить</a>
+                </td>
+                <input asp-for="Id" type="hidden" value="@Model.Id"/>
+                <input asp-for="Created" type="hidden" value="@Model.Created">
             </tr>
         </form>
     </tbody>

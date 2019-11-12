@@ -6,24 +6,27 @@
 <div class="container">
     @foreach(var p in Model)
     {
-      <div class="container" style="width:80%">
-          <h1 class="text-center">@p.Title</h1>
-          <div>
-                <h6 class="text-light text-left " style="display:inline">@p.Created</h6>
-                <h6 class="text-light text-right" style="display:inline">@p.Category.Name</h6>
+      <div class="container" style="width: 80%">
+          <h1 class="text-center" style="font-family: 'Merriweather', serif">@p.Title</h1>
+          <div class="post-meta">
+            <time>@p.Created</time>
+            <span>@p.Category.Name</span>
           </div>
-          <div class="dropdown-divider"></div>
-          <div class="post-body">
-              @p.Body
-          </div>
+          <hr/>
+              <p class="post-body">
+                @p.Body
+              </p>
+              <div style="display:flex; justify-content: space-between">
+              <a class="btn btn-outline-dark" asp-controller="Home" asp-action="EditPost" asp-route-id="@p.Id" >Edit Post</a>
               @if(@p.Modified)
               {
-                  <p class="text-sm-right">Изменено</p>
-              } 
+                  <span style="color: #999">(Изменено)</span>
+              }
               else
               {
-                  <p class="text-sm-right"></p>
+                  <span class="text-sm-right"></span>
               }
+              </div>
       </div>  
     }
 </div>
