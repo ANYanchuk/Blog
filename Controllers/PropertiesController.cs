@@ -9,8 +9,8 @@ namespace Blog.Controllers
 {
     public class PropertiesController : Controller
     {
-        private ITagCategoryRepository db;
-        public PropertiesController(ITagCategoryRepository repository) => db = repository;
+        private ITagCategory db;
+        public PropertiesController(ITagCategory repository) => db = repository;
 
         [HttpGet]
         public IActionResult AddCategory()
@@ -22,6 +22,12 @@ namespace Blog.Controllers
         public async Task<IActionResult> AddCategory(Category category)
         {
             await db.AddCategory(category);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            await db.DeleteCategory(id);
             return RedirectToAction("Index", "Home");
         }
     }

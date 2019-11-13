@@ -24,10 +24,10 @@ namespace Blog
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {   
+        {
             services.AddDbContext<PostContext>();
             services.AddTransient<IPostRepository, PostRepository>();
-            services.AddTransient<ITagCategoryRepository, CategoryRepository>();
+            services.AddTransient<ITagCategory, CategoryRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -49,7 +49,7 @@ namespace Blog
             app.UseRouting();
 
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
