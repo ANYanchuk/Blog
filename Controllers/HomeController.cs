@@ -2,30 +2,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Globalization;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using Blog.Core;
+using Blog.Models;
+using Blog.ViewModels;
 
 namespace Blog.Controllers
 {
     public class HomeController : Controller
     {
-        const int pageSize = 4;
         private IPostRepository db;
         public HomeController(IPostRepository repository) => db = repository;
 
         public IActionResult Index(int page = 1)
         {
-            IEnumerable<Post> posts = db.Posts.
-                OrderByDescending(p => p.Created).
-                Skip((page - 1) * pageSize).
-                Take(pageSize);
-            return View(posts);
+            const int pageSize = 4;
+            return View(new IndexViewModel
+            {
+                Posts = db.Posts.
+                    OrderByDescending(p => p.Created).
+                    Skip((page - 1) * pageSize).
+                    Take(pageSize),
+                PageModel = new PageModel
+                {
+                    CurrentPage = page,
+                    PageSize = pageSize,
+                    TotalItems = db.Posts.Count()
+                }
+            });
         }
 
         [HttpGet]
@@ -46,7 +53,7 @@ namespace Blog.Controllers
         public IActionResult EditPost(int id)
         {
             ViewData["Categories"] = new SelectList(db.Categories, "Id", "Name");
-            return View(db.Posts.First(p=>p.Id == id));
+            return View(db.Posts.First(p => p.Id == id));
         }
 
         [HttpPost]
