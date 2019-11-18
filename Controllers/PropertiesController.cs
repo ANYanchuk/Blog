@@ -9,8 +9,8 @@ namespace Blog.Controllers
 {
     public class PropertiesController : Controller
     {
-        private ITagCategory db;
-        public PropertiesController(ITagCategory repository) => db = repository;
+        private ITagCategoryRepository db;
+        public PropertiesController(ITagCategoryRepository repository) => db = repository;
 
         [HttpGet]
         public IActionResult AddCategory()

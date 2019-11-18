@@ -9,12 +9,25 @@
             <tr>
                 <td>@Html.DisplayNameFor(p=>p.Title)</td>
                 <td>@Html.EditorFor(p => p.Title)</td>
-                @Html.ValidationMessageFor(p=>p.Title)
+            </tr>
+            <tr>
+                <td>
+                    <label asp-for="Description"></label>
+                </td>
+                <td>
+                    <textarea asp-for="Description" style="width:100%"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Теги</label></td>
+                <td>
+                    <textarea name="tags"></textarea>
+                </td>
             </tr>
             <tr>
                 <td>@Html.DisplayNameFor(p=>p.Body)</td>
                 <td>
-                    <textarea asp-for="Body" style = "width:100%; height: 20em;" placeholder="Писать текст здесь"></textarea>
+                    <textarea asp-for="Body" style="width:100%; height: 20em" placeholder="Писать текст здесь"></textarea>
                 </td>
             </tr>
             <tr>

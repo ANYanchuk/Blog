@@ -43,23 +43,27 @@ namespace Blog.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPost(Post post)
+        public async Task<IActionResult> AddPost(Post post, string tags)
         {
-            await db.AddPost(post);
+            await db.AddPost(post, tags);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult EditPost(int id)
         {
+            var post = db.Posts.FirstOrDefault(p => p.Id == id);
+            if (post == null)
+                return NotFound();
+            ViewData["Tags"] = "" + db.GetPostTags(id).Select(t => t.Name).DefaultIfEmpty()?.Aggregate((s1, s2) => s1 + ' ' + s2);
             ViewData["Categories"] = new SelectList(db.Categories, "Id", "Name");
-            return View(db.Posts.First(p => p.Id == id));
+            return View(post);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditPost(Post post)
+        public async Task<IActionResult> EditPost(Post post, string tags)
         {
-            await db.EditPost(post);
+            await db.EditPost(post, tags);
             return RedirectToAction("Index");
         }
 
