@@ -1,0 +1,37 @@
+@model IEnumerable<Post>
+
+<div class="container" style="max-width: 900px">
+    @foreach(var p in Model)
+    {
+      <div>
+          <h1 class="text-center" style="font-family: 'Merriweather', serif">@p.Title</h1>
+          <div class="post-meta">
+            <time>@p.Created</time>
+            <span>
+              @foreach(Tag t in p.PostTags.Select(pt=>pt.Tag))
+              {
+                <span>@t.Name</span>
+              }
+              <a style="color:inherit" asp-controller="Properties" asp-action="Category" asp-route-id="@p.CategoryId">
+                <strong>@p.Category.Name</strong>
+              </a>
+            </span>
+          </div>
+          <hr/>
+              <p class="post-body">
+                @p.Body
+              </p>
+              <div style="display:flex; justify-content: space-between">
+              <a class="btn btn-outline-dark" asp-controller="Home" asp-action="EditPost" asp-route-id="@p.Id" >Edit Post</a>
+              @if(@p.Modified)
+              {
+                  <span style="color: #999">(Изменено)</span>
+              }
+              else
+              {
+                  <span class="text-sm-right"></span>
+              }
+              </div>
+      </div>  
+    }
+</div>

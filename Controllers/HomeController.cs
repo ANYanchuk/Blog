@@ -26,12 +26,7 @@ namespace Blog.Controllers
                     OrderByDescending(p => p.Created).
                     Skip((page - 1) * pageSize).
                     Take(pageSize),
-                PageModel = new PageModel
-                {
-                    CurrentPage = page,
-                    PageSize = pageSize,
-                    TotalItems = db.Posts.Count()
-                }
+                PageModel = new PageModel(db.Posts.Count(), page, pageSize, "Index", "Home")
             });
         }
 

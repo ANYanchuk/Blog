@@ -1,13 +1,10 @@
-using System.Collections.Generic;
-
 using Blog.Core;
 using Blog.Models;
-
 namespace Blog.ViewModels
 {
-    public class IndexViewModel
+    public class CategoryViewModel
     {
-        public IEnumerable<Post> Posts { get; set; }
+        public Category Category { get; set; }
         public PageModel PageModel { get; set; }
     }
 }

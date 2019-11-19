@@ -27,6 +27,7 @@ namespace Blog.TagHelpers
         public string PageClassSelected { get; set; }
         public string PageClassNormal { get; set; }
         public string PageAction { get; set; }
+        public string PageContoller { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -39,9 +40,9 @@ namespace Blog.TagHelpers
                 if (PageClassesEnabled)
                 {
                     tag.AddCssClass(PageClass);
-                    tag.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);   
+                    tag.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
                 }
-                tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
+                tag.Attributes["href"] = urlHelper.Action(PageAction, PageContoller , new { page = i });
                 tag.InnerHtml.Append(i.ToString());
                 result.InnerHtml.AppendHtml(tag);
             }
