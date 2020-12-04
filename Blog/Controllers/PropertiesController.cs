@@ -42,6 +42,7 @@ namespace Blog.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpDelete]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             await db.DeleteCategory(id);
