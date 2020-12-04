@@ -1,8 +1,10 @@
 @model Blog.ViewModels.IndexViewModel
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Category Posts";
 }
-<h2>Поиск по категориям:</h2>
-<h2>@ViewData["CategoryName"]<h2>
+<div>
+    <h2 style="font-size:16px; font-family: 'Merriweather', serif">Поиск по категории:
+        <strong>@ViewData["CategoryName"]</strong></h2>
+</div>
 @Html.Partial("PostList", Model.Posts)
 @Html.Partial("Pagination", Model.PageModel)
